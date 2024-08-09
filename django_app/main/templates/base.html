@@ -1,8 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{{ title|default:"non titled" }}</title>
+    <link type="text/css" href="{% static 'tournaments/css/style.css' %}" rel="stylesheet">
 </head>
 <header>
     <h2>This is header!</h2>
