@@ -3,10 +3,10 @@ Site to displaying School 21 tribe tournaments
 
 ## Architecture
 ### nginx/
-`/` - home page (now pass)
-`/tournaments/` - Landing with all campuses, all cores, all tribes, all peers.
-`/tournaments/<slug:campus_name>/`
-`/tournaments/<slug:campus_name>/<slug:tribe_name/`
+`/` - home page (now pass) <br>
+`/tournaments/` - Landing with all campuses, all cores, all tribes, all peers. <br>
+`/tournaments/<slug:campus_name>/` <br>
+`/tournaments/<slug:campus_name>/<slug:tribe_name/` <br>
 
 ### django_app
 I think i can create static page, without client logic. I can draw from HTML file from my VDS.
