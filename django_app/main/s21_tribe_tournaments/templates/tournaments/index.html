@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main page</title>
-</head>
-<body>
-    <h1>А это главная страница</h1>
-    {% for item in items %}
-        <h2>{{ item }}</h2>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
-    {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>А это главная страница</h1>
+{% for item in items %}
+    <h2>{{ item }}</h2>
+    {% if not forloop.last %}
+        <hr>
+    {% endif %}
+{% endfor %}
+
+{% include "tournaments/includes/test-include.html" %}
+
+{% endblock %}
+
