@@ -4,19 +4,19 @@ Site to displaying School 21 tribe tournaments
 ## Architecture
 ### nginx/
 `/` - home page (now pass)
-`/tribe_tournaments/` - Landing with all campuses, all cores, all tribes, all peers.
+`/tournaments/` - Landing with all campuses, all cores, all tribes, all peers.
+`/tournaments/<slug:campus_name>/`
+`/tournaments/<slug:campus_name>/<slug:tribe_name/`
 
-### tribe_tournaments/
+### django_app
 I think i can create static page, without client logic. I can draw from HTML file from my VDS.
 
-### api/
-Must process call from frontend to new data.
-
-### updater/
+### updater
 Must get actual information from School API and update DB
 
 ### database/ | PostgreSQL
 Main and single database for all data.
+
 #### Structure 
 ##### campuses
 ```py
@@ -57,12 +57,16 @@ curr_tribe_points: str,
 prev_tribe_points: str,
 ```
 
-## TO DO
-- learning Django
-
 ## MVP
-Must display only KZN campus tribe tournament. Must work fast and look okay.
+- Must display only KZN campus tribe tournament. 
+- Must work fast and look okay.
+- Must display only current tournament
 
+## TO DO - migrate to [DEV canban](https://github.com/users/drveles/projects/6/views/1) 
+- learning Django
+- Making tournaments page
+- Making tribe page
+- Making drveles.ru page
+- Making 404 page
 
-## TO DO after MVP
-- Need autobackups to DB
+## TO DO after MVP - migrate to canban DEV 
