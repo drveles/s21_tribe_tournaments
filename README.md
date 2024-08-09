@@ -2,14 +2,17 @@
 Site to displaying School 21 tribe tournaments
 
 ## Architecture
-### nginx/
-`/` - home page (now pass) <br>
+### nginx
+1. `/` - home page (now pass) <br> 
+2. `django_app`
+
+### django_app
+I think i can create static page, without client logic. I can draw from HTML file from my VDS.
+
 `/tournaments/` - Landing with all campuses, all cores, all tribes, all peers. <br>
 `/tournaments/<slug:campus_name>/` <br>
 `/tournaments/<slug:campus_name>/<slug:tribe_name/` <br>
 
-### django_app
-I think i can create static page, without client logic. I can draw from HTML file from my VDS.
 
 ### updater
 Must get actual information from School API and update DB
