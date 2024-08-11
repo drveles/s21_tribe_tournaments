@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>А это главная страница</h1>
 {% for item in items %}
     <h2>{{ item }}</h2>
@@ -9,8 +10,6 @@
 {% endfor %}
 
 {% include "tournaments/includes/test-include.html" %}
-
-<button>Test button</button>
 
 {% endblock %}
 

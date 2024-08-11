@@ -25,6 +25,7 @@ Main and single database for all data.
 ```py
 id: int,
 name: str,
+slug: str,
 ```
 ##### tournaments
 ```py
@@ -38,26 +39,27 @@ end: timestamp,
 ```py
 id: int,
 name: str,
+slug: str,
 campus_id: int,
-capacity: int,
+master: str,
 parallel: str,
 visibility: bool, 
-master: str,
-
-curr_tribe_points: int,
-prev_tribe_points: int,
+capacity: int,
+curr_points: int,
+prev_points: int,
 ```
 
 ##### peers
 ```py
-id: int, #need auto-generation
+id: int, 
 name: str,
 campus_id: int,
-tribe_id: int,
+curr_tribe_id: int,
+prev_tribe_id: int,
 level: int,
 wave: str,
-curr_tribe_points: str,
-prev_tribe_points: str,
+curr_points: str,
+prev_points: str,
 ```
 
 ## MVP

@@ -12,12 +12,12 @@ def main_page(request):
     return render(request, "tournaments/index.html", data)
 
 
-def tribe(request, re_str):
-    if re_str not in ("kzn", "msk"):
+def campus(request, slug):
+    if slug not in ("kazan", ):
         raise Http404()
     data = {
-        "title": f"{re_str.upper()} campus",
-        "re_str": re_str,
+        "title": f"{slug.upper()} campus",
+        "re_str": slug,
     }
     return render(request, "tournaments/campuses.html", data)
 
