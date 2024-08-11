@@ -228,14 +228,15 @@ header {
 .header-logo_img {
   width: 100px;
   height: auto;
-  border: 2px solid var(--background-color);
+  border: 1px solid var(--background-color);
   border-radius: 50%;
-  padding: 3px;
-  transition: 0.3s;
+  padding: 5px;
+  transition: 0.4s;
 }
 
 .header-logo_img:hover {
-  border: 2px solid var(--text-color);
+  border: 1px solid var(--text-color);
+  padding: 1px;
 
 }
 
@@ -266,17 +267,17 @@ footer {
 .github-btn_text__hidden {
   visibility: hidden;
   color: transparent;
-  transition: 0.3s linear;
+  transition: 0.4s linear;
 }
 
 .github-btn {
   --c: linear-gradient(var(--text-color) 0 0);
   padding-bottom: .15em;
   background: var(--c), var(--c);
-  background-size: 4em 0.08em;
+  background-size: 4.5em 0.08em;
   background-position: 50% 100%;
   background-repeat: no-repeat;
-  transition: .3s linear, background-size .3s .2s linear;
+  transition: 0.35s linear, background-size .3s .2s linear;
 }
 
 .github-btn:hover {
