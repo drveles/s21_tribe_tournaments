@@ -4,17 +4,36 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{% static 'tournaments/images/favicon.ico' %}">
     <title>{{ title|default:"non titled" }}</title>
     <link type="text/css" href="{% static 'tournaments/css/style.css' %}" rel="stylesheet">
 </head>
 <header>
-    <h2>This is header!</h2>
+    <div class="content">
+        <div class="header-wrapper">
+            <div class="header-logo">
+                <a class="header-logo_a" href="#"><img class="header-logo_img" src="{% static 'tournaments/images/logo_hq.svg' %}"></a>
+            </div>
+        </div>
+    </div>
 </header>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 <footer>
-    <h2>This is footer!</h2>
+    <div class="content">
+        <h1>This это is header1!</h1>
+        <h2>This это is header2!</h2>
+        <h3>This \то is header3!</h3>
+        <h4>This is header4!</h4>
+        <h5>This is header5!</h5>
+        <h6>This is header6!</h6>
+        <p>This is regular paragraph!</p>
+        <a>This is link</a>
+        <button>Test button</button>
+    </div>
 </footer>
 </html>

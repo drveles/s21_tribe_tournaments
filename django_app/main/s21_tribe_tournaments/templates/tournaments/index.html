@@ -5,11 +5,12 @@
 {% for item in items %}
     <h2>{{ item }}</h2>
     {% if not forloop.last %}
-        <hr>
     {% endif %}
 {% endfor %}
 
 {% include "tournaments/includes/test-include.html" %}
+
+<button>Test button</button>
 
 {% endblock %}
 
