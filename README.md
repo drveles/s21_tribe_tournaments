@@ -1,77 +1,33 @@
-# S21 tribe tournaments
-Site to displaying School 21 tribe tournaments
+# School 21 tribe tournaments
+    Site to displaying School 21 tribe tournaments in real time.
+
+Описание на русском [здесь](./README_RUS.md) <br>
+
+Stack: `Python`, `SQL`, `Docker`,  <br>
+Libs and frameworks: `Django`, `DjangoORM`, <br>
+
 
 ## Architecture
 ### nginx
 1. `/` - home page (now pass) <br> 
-2. `django_app`
+2. `django_app` - all traffic directin to this application <br>
 
 ### django_app
-I think i can create static page, without client logic. I can draw from HTML file from my VDS.
-
-`/tournaments/` - Landing with all campuses, all cores, all tribes, all peers. <br>
-`/tournaments/<slug:campus_name>/` <br>
-`/tournaments/<slug:campus_name>/<slug:tribe_name/` <br>
-
+Main `MTV` web application. 
+- Creates pages to users requests
+- Creates models fo `SQL` DB using `Django ORM`
+- Uses data from the DB to generate pages
 
 ### updater
 Must get actual information from School API and update DB
 
-### database/ | PostgreSQL
-Main and single database for all data.
-
-#### Structure 
-##### campuses
-```py
-id: int,
-name: str,
-slug: str,
-```
-##### tournaments
-```py
-id: int,
-name: str,
-start: timestamp,
-end: timestamp,
-```
-
-##### tribes
-```py
-id: int,
-name: str,
-slug: str,
-campus_id: int,
-master: str,
-parallel: str,
-visibility: bool, 
-capacity: int,
-curr_points: int,
-prev_points: int,
-```
-
-##### peers
-```py
-id: int, 
-name: str,
-campus_id: int,
-curr_tribe_id: int,
-prev_tribe_id: int,
-level: int,
-wave: str,
-curr_points: str,
-prev_points: str,
-```
+### database 
+Main and single database for all data
 
 ## MVP
-- Must display only KZN campus tribe tournament. 
+- Must display KZN campus tribe tournament. 
 - Must work fast and look okay.
-- Must display only current tournament
+- Must display current tournament in live time.
 
-## TO DO - migrate to [DEV canban](https://github.com/users/drveles/projects/6/views/1) 
-- learning Django
-- Making tournaments page
-- Making tribe page
-- Making drveles.ru page
-- Making 404 page
+## TO DO here: [DEV canban](https://github.com/users/drveles/projects/6/views/1) 
 
-## TO DO after MVP - migrate to canban DEV 
