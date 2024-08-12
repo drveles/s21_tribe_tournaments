@@ -1,0 +1,293 @@
+/* ------ NULL STYLES ------- */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a:-webkit-any-link {
+  color: inherit;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  background: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------- */
+
+/* My stock styles to site */
+
+@font-face {
+  font-family: Golos;
+  /* Regular */
+  src: url('./../fonts/GolosText-Regular.ttf');
+}
+
+/* Dark version color palette */
+:root {
+  --background-color: black;
+  --text-color: white;
+  --accent-color: #252525;
+  --header-height: 100px;
+  --footer-height: 50px;
+}
+
+/* Light version color palette */
+@media screen and (prefers-color-scheme: light) {
+  :root {
+    --background-color: light;
+    --text-color: black;
+    --accent-color: gray;
+  }
+}
+
+html,
+body {
+  /* Colors for site */
+  background: var(--background-color);
+  color: var(--text-color);
+
+  /* All texts */
+  font-family: Golos;
+  font-style: normal;
+  font-weight: 400;
+
+  /* Paragraph/Normal/Paragraph Regular */
+  font-size: 16px;
+  line-height: 26px;
+}
+
+
+
+h1 {
+  /* Heading/1/Regular */
+
+  font-size: 80px;
+  line-height: 98px;
+}
+
+h2 {
+  /* Heading/2/Regular */
+  font-size: 64px;
+  line-height: 78px;
+}
+
+h3 {
+  /* Heading/3/Regular */
+  font-size: 54px;
+  line-height: 64px;
+}
+
+h4 {
+  /* Heading/4/Regular */
+  font-size: 42px;
+  line-height: 50px;
+
+}
+
+h5 {
+  /* Heading/5/Regular */
+  font-size: 32px;
+  line-height: 38px;
+}
+
+h6 {
+  /* Heading/6/Regular */
+  font-size: 24px;
+  line-height: 28px;
+}
+
+a {
+  /* Link/Regular */
+  font-size: 16px;
+  line-height: 23px;
+  text-decoration-line: underline;
+  display: block;
+}
+
+button {
+  /* Button/Regular */
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  background: inherit;
+  color: inherit;
+  display: inline-block;
+  padding: 16px 24px;
+  border: 2px solid;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: var(--accent-color);
+}
+
+div.content {
+  /* to delete */
+  border: 1px solid var(--accent-color);
+  /* to delete */
+
+  display: block;
+  width: 840px;
+  padding: 0px 20px 0px 20px;
+  margin: 0 auto 0 auto;
+
+}
+
+/* My specific styles */
+header {
+  height: var(--header-height);
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.header-logo_img {
+  width: 100px;
+  height: auto;
+  border: 1px solid var(--background-color);
+  border-radius: 50%;
+  padding: 5px;
+  transition: 0.4s;
+}
+
+.header-logo_img:hover {
+  border: 1px solid var(--text-color);
+  padding: 1px;
+
+}
+
+
+.main {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1vh);
+}
+
+
+footer {
+  height: var(--footer-height);
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+
+.github-btn {
+  display: block;
+  text-decoration-line: none;
+  text-align: center;
+}
+
+.github-btn_text__hidden {
+  visibility: hidden;
+  color: transparent;
+  transition: 0.4s linear;
+}
+
+.github-btn {
+  --c: linear-gradient(var(--text-color) 0 0);
+  padding-bottom: .15em;
+  background: var(--c), var(--c);
+  background-size: 4.5em 0.08em;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  transition: 0.35s linear, background-size .3s .2s linear;
+}
+
+.github-btn:hover {
+  .github-btn_text__hidden {
+    visibility: visible;
+    color: var(--text-color);
+  }
+
+  background-size: 24.5% 0.07em;
+  background-position: 0% 100%,
+  100% 100%;
+}
+

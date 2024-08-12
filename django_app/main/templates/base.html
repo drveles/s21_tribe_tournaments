@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{% static 'tournaments/images/favicon.ico' %}">
+    <title>{{ title|default:"non titled" }}</title>
+    <link type="text/css" href="{% static 'tournaments/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="content">
+            <div class="header-wrapper">
+                <div class="header-logo">
+                    <a class="header-logo_a" href="{% url 'tournaments_main' %}"><img class="header-logo_img"
+                            src="{% static 'tournaments/images/logo_hq.svg' %}"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+            <!-- <h1>This это is header1!</h1>
+            <h2>This это is header2!</h2>
+            <h3>This \то is header3!</h3>
+            <h4>This is header4!</h4>
+            <h5>This is header5!</h5>
+            <h6>This is header6!</h6>
+            <p>This is regular paragraph!</p>
+            <a>This is link</a> -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="content">
+
+            <div class="footer-wrapper">
+                <div class="footer-contacts">
+                    <a class="github-btn" href="https://github.com/drveles" target="_blank">
+                        <span class="github-btn_text__hidden">drveles < </span> <span> Vasilii Frolov </span> <span
+                                    class="github-btn_text__hidden"> > jenniffr</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="{% static 'tournaments/js/script.js' %}"></script>
+
+</html>
