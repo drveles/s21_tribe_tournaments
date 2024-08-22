@@ -204,17 +204,18 @@ button:hover {
 
 div.content {
   /* to delete */
-  border: 1px solid var(--accent-color);
+  /* border: 1px solid var(--accent-color); */
   /* to delete */
 
   display: block;
-  width: 840px;
+  max-width: 1240px;
   padding: 0px 20px 0px 20px;
   margin: 0 auto 0 auto;
 
 }
 
 /* My specific styles */
+/* header start */
 header {
   height: var(--header-height);
 }
@@ -240,11 +241,39 @@ header {
 
 }
 
+/* header end */
+/* MAIN start  */
 
 .main {
-  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1vh);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 5vh);
 }
 
+.main-wrapper, .footer-wrapper {
+  margin-top: 20px;
+}
+
+.center-wrapper {
+  text-align: center;
+}
+.tribe-name {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .tribe-name_title {
+  padding-left: 5vw;
+} */
+
+
+.tribe-peers_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top:1px var(--accent-color) solid ;
+}
+
+/* MAIN end */
+/* footer start */
 
 footer {
   height: var(--footer-height);
