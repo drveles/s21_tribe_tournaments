@@ -1,11 +1,18 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
 
 class Campuses(models.Model):
     name = models.CharField(max_length=52)
-    slug = models.CharField(max_length=52)
+    slug = models.CharField(max_length=52, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("tournaments_main", kwargs={"campus_slug": self.slug})
 
 
 class Tournaments(models.Model):
@@ -13,11 +20,14 @@ class Tournaments(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
 
+    def __str__(self):
+        return self.name
+
 
 class Tribes(models.Model):
     name = models.CharField(max_length=21)
-    slug = models.CharField(max_length=21)
-    campus_id = models.ForeignKey(Campuses, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=21, unique=True)
+    campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
     master = models.CharField(max_length=52)
     parallel = models.CharField(max_length=21)
     visibility = models.BooleanField(default=False)
@@ -25,14 +35,33 @@ class Tribes(models.Model):
     curr_points = models.IntegerField(default=0)
     prev_points = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("campus_page", kwargs={"tribe_slug": self.slug})
+
 
 class Peers(models.Model):
     name = models.CharField(max_length=21)
-    campus_id = models.ForeignKey(Campuses, on_delete=models.CASCADE)
-    curr_tribe_id = models.ForeignKey(Tribes, on_delete=models.CASCADE, related_name="curr_tribe_id")
-    prev_tribe_id = models.ForeignKey(Tribes, on_delete=models.CASCADE, related_name="prev_tribe_id",
-                                      null=True, default=None)
+    campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
+    curr_tribe = models.ForeignKey(
+        Tribes,
+        on_delete=models.CASCADE,
+        related_name="curr_tribe",
+        default=1,
+    )
+    prev_tribe = models.ForeignKey(
+        Tribes,
+        on_delete=models.CASCADE,
+        related_name="prev_tribe",
+        null=True,
+        default=None,
+    )
     level = models.IntegerField()
     wave = models.CharField(max_length=21)
     curr_points = models.IntegerField(default=0)
     prev_points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

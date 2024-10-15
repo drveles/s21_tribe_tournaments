@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block content %} <!-- start block content -->
 
-<h1>А это главная страница</h1>
-{% for item in items %}
-    <h2>{{ item }}</h2>
-    {% if not forloop.last %}
-    {% endif %}
-{% endfor %}
+{% include "tournaments/includes/announcement.html" %} <!-- include to annoncement -->
 
-{% include "tournaments/includes/test-include.html" %}
+<!-- here need to display all campuses and tribes in these campuses-->
 
-{% endblock %}
-
+<!-- {% for item in items %}
+<h2>{{ item }}</h2>
+{% if not forloop.last %}
+{% endif %}
+{% endfor %} -->
+{% endblock %} <!-- end block content   -->

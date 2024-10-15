@@ -21,6 +21,8 @@
 a:focus,
 a:active {
   outline: none;
+  outline-style: none;
+  -moz-outline-style: none;
 }
 
 a:-webkit-any-link {
@@ -69,10 +71,14 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
+  outline-style: none;
+  -moz-outline-style: none;
 }
 
+a,
 a:hover {
   text-decoration: none;
+  text-decoration-line: none;
 }
 
 ul li {
@@ -137,8 +143,6 @@ body {
   line-height: 26px;
 }
 
-
-
 h1 {
   /* Heading/1/Regular */
 
@@ -177,8 +181,10 @@ h6 {
   line-height: 28px;
 }
 
-a {
+a,
+a:hover {
   /* Link/Regular */
+  color: var(--text-color);
   font-size: 16px;
   line-height: 23px;
   text-decoration-line: underline;
@@ -203,18 +209,16 @@ button:hover {
 }
 
 div.content {
-  /* to delete */
-  border: 1px solid var(--accent-color);
-  /* to delete */
-
   display: block;
-  width: 840px;
+  max-width: 1240px;
   padding: 0px 20px 0px 20px;
   margin: 0 auto 0 auto;
 
 }
 
 /* My specific styles */
+
+/* header start */
 header {
   height: var(--header-height);
 }
@@ -228,23 +232,170 @@ header {
 .header-logo_img {
   width: 100px;
   height: auto;
-  border: 1px solid var(--background-color);
+  border: 2px solid var(--background-color);
   border-radius: 50%;
   padding: 5px;
   transition: 0.4s;
 }
 
 .header-logo_img:hover {
-  border: 1px solid var(--text-color);
+  border: 2px solid var(--text-color);
   padding: 1px;
 
 }
 
+/* header end */
+
+/* MAIN start  */
 
 .main {
-  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1vh);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 5vh);
 }
 
+.main-wrapper,
+.footer-wrapper {
+  margin-top: 20px;
+}
+
+.center-wrapper {
+  text-align: center;
+}
+
+.campus-tribes {
+  margin-top: 15px;
+
+}
+
+.tribe-info {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-auto-flow: row;
+  align-items: center;
+
+  padding: 10px;
+  border-top: 1px var(--text-color) solid;
+  border-bottom: 1px var(--text-color) solid;
+  border-left: 2px transparent solid;
+  border-right: 2px transparent solid;
+
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+
+  &:first-child {
+    border-top: 1px transparent solid;
+
+    &:hover {
+      border-top: 1px var(--text-color) solid;
+    }
+  }
+
+  &:hover {
+    border-left: 2px var(--text-color) solid;
+    border-right: 2px var(--text-color) solid;
+  }
+}
+
+.tribe-info_capacity {
+  justify-self: start;
+
+  display: flex;
+  align-items: center;
+
+  & h5 {
+    padding-right: 10px;
+  }
+}
+
+.tribe-info_points {
+  justify-self: end;
+
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.tribe-peers {
+
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  /* transition: max-height 1s ease-in; */
+
+  display: grid;
+  visibility: visible;
+  color: var(--text-color);
+  max-height: auto;
+
+
+}
+
+.tribe-peers_item {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: span 6;
+  grid-row: auto;
+  grid-auto-flow: row;
+  align-items: center;
+  border-top: 1px var(--accent-color) solid;
+  padding: 10px 0;
+}
+
+.tribe-peer_place {
+  grid-column: 1/2;
+
+  display: flex;
+  align-items: end;
+
+  & h4 {
+    padding-right: 10px;
+  }
+}
+
+.tribe-peer_nickname {
+  grid-column: span 2 / 4;
+}
+
+.tribe-peer_level {
+  grid-column: 4/5;
+  justify-self: start;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.tribe-peer_wave {
+  grid-column: 5/6;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tribe-peer_points {
+  grid-column: 6/7;
+  justify-self: end;
+
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+/* MAIN end */
+
+/* footer start */
 
 footer {
   height: var(--footer-height);
@@ -257,13 +408,6 @@ footer {
   height: 50px;
 }
 
-
-.github-btn {
-  display: block;
-  text-decoration-line: none;
-  text-align: center;
-}
-
 .github-btn_text__hidden {
   visibility: hidden;
   color: transparent;
@@ -271,6 +415,9 @@ footer {
 }
 
 .github-btn {
+  display: block;
+  text-align: center;
+  text-decoration-line: none;
   --c: linear-gradient(var(--text-color) 0 0);
   padding-bottom: .15em;
   background: var(--c), var(--c);
@@ -278,16 +425,26 @@ footer {
   background-position: 50% 100%;
   background-repeat: no-repeat;
   transition: 0.35s linear, background-size .3s .2s linear;
-}
 
-.github-btn:hover {
-  .github-btn_text__hidden {
-    visibility: visible;
-    color: var(--text-color);
+  &:hover {
+    text-decoration-line: none;
+    background-size: 24.5% 0.07em;
+    background-position: 0% 100%,
+      100% 100%;
+
+    .github-btn_text__hidden {
+      visibility: visible;
+      color: var(--text-color);
+    }
   }
-
-  background-size: 24.5% 0.07em;
-  background-position: 0% 100%,
-  100% 100%;
 }
 
+
+.__hidden {
+  /* display: none; */
+  transition: max-height 0.4s ease;
+  max-height: 0px;
+  visibility: hidden;
+  color: transparent;
+
+}

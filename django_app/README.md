@@ -27,7 +27,7 @@ end: timestamp,
 id: int,
 name: str,
 slug: str,
-campus_id: int,
+campus_id: int, # _id not needed
 master: str,
 parallel: str,
 visibility: bool, 
