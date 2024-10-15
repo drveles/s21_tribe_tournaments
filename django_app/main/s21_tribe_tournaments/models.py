@@ -37,7 +37,7 @@ class Tribes(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse("campus_page", kwargs={"tribe_slug": self.slug})
 

@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
@@ -21,9 +22,9 @@ from django.views.generic import RedirectView
 from s21_tribe_tournaments.views import page_not_found
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name="admin"),
-    path('tournaments/', include("s21_tribe_tournaments.urls"), name="tournaments"),
-    path('', RedirectView.as_view(url="tournaments/"))
+    path("admin/", admin.site.urls, name="admin"),
+    path("tournaments/", include("s21_tribe_tournaments.urls"), name="tournaments"),
+    path("", RedirectView.as_view(url="tournaments/")),
 ]
 
 handler404 = page_not_found
