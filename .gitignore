@@ -3,6 +3,7 @@
 .sqlite3
 .DS_Store
 .vscode/
+*.sqbpro
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
