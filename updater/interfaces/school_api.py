@@ -1,45 +1,8 @@
 """
-Connecting to school 21 API
+Connecting to School 21 API
 """
 
-import os
-import requests
-
-
-class AuthInSchoolAPI:
-    def __init__(self) -> None:
-        self.__auth_login = os.getenv("EDU_SCHOOL_LOGIN")
-        self.__auth_password = os.getenv("EDU_SCHOOL_PASSWORD")
-        if not self.__auth_login or not self.__auth_password:
-            raise EnvironmentError(
-                "Can't get EDU_SCHOOL_LOGIN or EDU_SCHOOL_PASSWORD from environment"
-            )
-        self.__auth_url = "https://auth.sberclass.ru/auth/realms/EduPowerKeycloak/protocol/openid-connect/token"
-
-    def get_auth_tocken_to_api(self) -> str:
-        """
-        Auth and return token: `Bearer $token`
-        """
-        response = requests.post(
-            url=self.__auth_url,
-            data={
-                "username": self.__auth_login,
-                "password": self.__auth_password,
-                "grant_type": "password",
-                "client_id": "s21-open-api",
-            },
-            timeout=5,
-        )
-        if response.status_code != 200:
-            raise requests.exceptions.HTTPError(
-                f"Can't access get Auth API. Status code: {response.status_code}, text: {response.text}"
-            )
-
-        access_token = response.json().get("access_token", "")
-        if not access_token:
-            raise ValueError("Failed get token from Auth API")
-
-        return "Bearer " + access_token
+from auth_school_api import AuthInSchoolAPI
 
 
 class SchoolAPI:
@@ -50,8 +13,7 @@ class SchoolAPI:
         self.__campuses_with_uuid = {
             "Kazan": "7c293c9c-f28c-4b10-be29-560e4b000a34",
         }
-
-        self.__coalitions_with_id = {
+        self.__campus_coalitions_with_id = {
             "Kazan": {
                 "Aer": 124,
                 "Anglerfish": 92,
@@ -64,6 +26,31 @@ class SchoolAPI:
             }
         }  # GET /campuses/{campusId}/coalitions
 
-        def get_coalitions_participants(self) -> set:
-            # /coalitions/{coalitionId}/participants
-            pass
+    async def __acync_fetch_coalition_participants(self, full_url: str) -> set:
+        pass
+
+    def _get_coalitions_participants(self, campus_name: str) -> dict:
+        # need cache
+
+        coalitions_participants = dict()
+
+        for coalitions in self.__campus_coalitions_with_id[campus_name]:
+            for coalition_name, coalition_id in coalitions.items():
+                print(coalition_name, coalition_id)
+
+    async def __acync_fetch_participant_rank(self, full_url: str) -> dict:
+        pass
+
+    def _get_particapant_rank(self, login: str) -> int:
+
+        pass
+
+    def get_all_campus_participant_info(self, campus_name: str) -> dict:
+        if campus_name not in self.__campus_coalitions_with_id:
+            raise KeyError(f"Invalid name of campus: {campus_name}")
+
+
+if __name__ == "__main__":
+    schoolAPI = SchoolAPI()
+
+    schoolAPI.get_coalitions_participants()
