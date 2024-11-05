@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "s21_tribe_tournaments.apps.S21TribeTournamentsConfig",
+    "s21_tribe_tournaments",
 ]
 
 MIDDLEWARE = [
