@@ -1,6 +1,5 @@
 from .crud.campus import create_campus
 from .crud.tribes import create_campus_tribe
-from .crud.tournaments import create_or_update_tournament
 from s21_tribe_tournaments.models import Campuses
 
 
@@ -21,6 +20,9 @@ def create_full_information(campus_name) -> None:
     if campus_name not in campuses_tribes:
         raise KeyError(f"No campus {campus_name} tribe information to manual creating")
 
+    if Campuses.objects.filter(name=campus_name).exists():
+        return
+
     create_campus(campus_name)
     for tribe_name, tribe_parallel in campuses_tribes[campus_name].items():
         info = {
@@ -29,5 +31,3 @@ def create_full_information(campus_name) -> None:
             "visibility": True,
         }
         create_campus_tribe(name=tribe_name, information=info)
-
-    
