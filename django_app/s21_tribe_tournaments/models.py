@@ -31,17 +31,6 @@ class Tribes(models.Model):
         return reverse("campus_page", kwargs={"tribe_slug": self.slug})
 
 
-class Tournaments(models.Model):
-    name = models.CharField(max_length=128)
-    campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
-    tribe = models.ForeignKey(Tribes, on_delete=models.CASCADE)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-
-    def __str__(self):
-        return self.name
-
-
 class Peers(models.Model):
     name = models.CharField(max_length=21)
     campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
