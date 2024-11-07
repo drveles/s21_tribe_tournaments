@@ -2,13 +2,16 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Campuses
 from updater.interfaces.auth_school_api import AuthInSchoolAPI
+from updater.crud.campus import create_campus
 
 def main_page(request):
     return redirect(campus_page, "kazan")
 
 
 def campus_page(request, campus_slug):
+    create_campus("Kazan")
     campus = get_object_or_404(Campuses, slug=campus_slug)
+
     # print(AuthInSchoolAPI().get_auth_tocken_to_api())
 
     data = {
