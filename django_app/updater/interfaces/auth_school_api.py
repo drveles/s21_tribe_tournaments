@@ -7,15 +7,15 @@ import requests
 
 
 class AuthInSchoolAPI:
-    def __init__(self) -> None:
-        self.__auth_login = os.getenv("EDU_SCHOOL_LOGIN")
-        self.__auth_password = os.getenv("EDU_SCHOOL_PASSWORD")
-        if not self.__auth_login or not self.__auth_password:
-            raise EnvironmentError(
-                "Can't get EDU_SCHOOL_LOGIN or EDU_SCHOOL_PASSWORD from environment"
-            )
-        self.__auth_url = "https://auth.sberclass.ru/auth/realms/EduPowerKeycloak/protocol/openid-connect/token"
+    __auth_login = os.getenv("EDU_SCHOOL_LOGIN")
+    __auth_password = os.getenv("EDU_SCHOOL_PASSWORD")
+    if not __auth_login or not __auth_password:
+        raise EnvironmentError(
+            "Can't get EDU_SCHOOL_LOGIN or EDU_SCHOOL_PASSWORD from environment"
+        )
+    __auth_url = "https://auth.sberclass.ru/auth/realms/EduPowerKeycloak/protocol/openid-connect/token"
 
+    @classmethod
     def get_auth_tocken_to_api(self) -> str:
         """
         Auth and return token: `Bearer $token`

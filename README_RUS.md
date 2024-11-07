@@ -4,7 +4,7 @@
 English readme [here](./README.md) <br>
 
 Стек: `Python`, `SQL`, `Docker` <br>
-Библиотеки и фреймворки: `Django`, `DjangoORM` <br>
+Библиотеки и фреймворки: `Django`, `DjangoORM`, `asyncio`, `aiohttp` <br>
 
 
 ## Архитектура
