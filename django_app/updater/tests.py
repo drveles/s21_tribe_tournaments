@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.utils.text import slugify
 from s21_tribe_tournaments.models import Campuses
 from updater.crud.campus import create_campus, delete_campus
+from updater.manual_update import create_full_information
 
 
 class TestCampusMethods(TestCase):
@@ -28,3 +29,16 @@ class TestCampusMethods(TestCase):
         with self.assertRaises(Campuses.DoesNotExist):
             Campuses.objects.get(slug=slugify(self.name1))
             Campuses.objects.get(name=self.name2)
+
+
+class TestManualCreate(TestCase):
+    def test_success(self):
+        campus_name = "Kazan"
+        create_full_information(campus_name)
+        campus = Campuses.objects.get(name=campus_name)
+        self.assertEqual(campus.slug, slugify(campus_name))
+
+    def test_failture(self):
+        campus_name = "Fail"
+        with self.assertRaises(KeyError):
+            create_full_information(campus_name)
