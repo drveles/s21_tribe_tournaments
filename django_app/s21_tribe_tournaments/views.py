@@ -1,9 +1,7 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Campuses
-
-# Create your views here.
-
+from updater.interfaces.auth_school_api import AuthInSchoolAPI
 
 def main_page(request):
     return redirect(campus_page, "kazan")
@@ -11,6 +9,7 @@ def main_page(request):
 
 def campus_page(request, campus_slug):
     campus = get_object_or_404(Campuses, slug=campus_slug)
+    # print(AuthInSchoolAPI().get_auth_tocken_to_api())
 
     data = {
         "title": f"{campus_slug.upper()} campus",
