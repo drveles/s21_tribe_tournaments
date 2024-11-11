@@ -4,9 +4,9 @@ Connecting to School 21 API
 
 import asyncio
 import aiohttp
+import logging
 from asgiref.sync import async_to_sync
-
-from auth_school_api import AuthInSchoolAPI
+from .auth_school_api import AuthInSchoolAPI
 
 
 class SchoolAPI:
@@ -39,38 +39,40 @@ class SchoolAPI:
                 headers={"Authorization": self.__token},
                 ssl=False,
             ) as response:
-                return await response.json()
+                if response.status == 429:
+                    logging.error(f"429 status code, retrying {full_url}")
+                    await asyncio.sleep(0.1)
+                    return await self.__fetch_tribe_members_async(tribe_id)
+                elif response.status > 200:
+                    raise aiohttp.ServerConnectionError(
+                        f"Code {response.status} for request: GET {full_url}"
+                    )
 
-    async def get_campus_tribes_memebers_async(self, name: str) -> dict:
+                result = await response.json()
+                return result.get("participants", [])
+
+    async def _get_campus_tribes_memebers_async(self, name: str) -> dict:
         if (
             name not in self.__campuses_with_uuid
             or name not in self.__campus_tribes_with_id
         ):
             raise KeyError(f"Campus {name} not presented in SchoolAPI")
 
-        tribe_results = dict()
+        tasks = list()
+        for tribe_id in self.__campus_tribes_with_id[name].values():
+            tasks.append(
+                asyncio.create_task(self.__fetch_tribe_members_async(tribe_id))
+            )
 
-        for tribe_name, tribe_id in self.__campus_tribes_with_id[name].items():
-            task = asyncio.create_task(self.__fetch_tribe_members_async(tribe_id))
-            tribe_results[tribe_name] = task
-        results = await asyncio.gather(*tribe_results.values())
+        results_arr = await asyncio.gather(*tasks)
 
-        tribe_data = {
-            tribe_name: result
-            for tribe_name, result in zip(tribe_results.keys(), results)
-        }
+        tribe_data = dict(zip(self.__campus_tribes_with_id[name].keys(), results_arr))
         return tribe_data
 
-    def get_campus_tribes_memebers(self, name: str, is_async: bool = True) -> dict:
-        if is_async:
-            return async_to_sync(self.get_campus_tribes_memebers_async)(name)
-        else: 
-            # return async_to_sync(self.get_campus_tribes_memebers_async)(name)
-            pass
- 
+    def get_campus_tribes_memebers(self, name: str) -> dict:
+        return async_to_sync(self._get_campus_tribes_memebers_async)(name)
+
 
 if __name__ == "__main__":
     schoolAPI = SchoolAPI()
-
-    schoolAPI.get_campus_tribes_memebers("Kazan", is_async=True)
-
+    schoolAPI.get_campus_tribes_memebers("Kazan")

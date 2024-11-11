@@ -1,10 +1,11 @@
 from updater.crud.peers import create_or_update_peers_in_tribes
 
-def update_tribe_members(campus_name: str) -> None:
-    # запросить данные о составе пиров в трайбе
+
+def update_tribe_members(campus_data: dict) -> None:
     # обновить данные create_or_update_peers_in_tribes()
-    # name, campus, curr_tribe, level, wave, 
+    # name, campus, curr_tribe, level, wave,
     pass
+
 
 def update_peers_rank(campus_name: str) -> None:
     # для кампуса
