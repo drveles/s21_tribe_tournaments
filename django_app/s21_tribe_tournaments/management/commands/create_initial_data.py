@@ -11,7 +11,7 @@ class Command(BaseCommand):
             create_full_information(campus_name)
             self.stdout.write(
                 self.style.SUCCESS(
-                    f"Campus {campus_name} created"
+                    f"Campus {campus_name} autocreated before running service"
                 )
             )
         except KeyError as e:
