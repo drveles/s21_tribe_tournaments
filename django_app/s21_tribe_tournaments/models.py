@@ -17,9 +17,9 @@ class Tribes(models.Model):
     name = models.CharField(max_length=21)
     slug = models.CharField(max_length=21, unique=True)
     campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
-    master = models.CharField(max_length=52)
     parallel = models.CharField(max_length=21)
     visibility = models.BooleanField(default=False)
+    master = models.CharField(max_length=52, blank=True)
     capacity = models.IntegerField(default=0)
     curr_points = models.IntegerField(default=0)
     prev_points = models.IntegerField(default=0)
@@ -29,17 +29,6 @@ class Tribes(models.Model):
 
     def get_absolute_url(self):
         return reverse("campus_page", kwargs={"tribe_slug": self.slug})
-
-
-class Tournaments(models.Model):
-    name = models.CharField(max_length=128)
-    campus = models.ForeignKey(Campuses, on_delete=models.CASCADE)
-    tribe = models.ForeignKey(Tribes, on_delete=models.CASCADE)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-
-    def __str__(self):
-        return self.name
 
 
 class Peers(models.Model):

@@ -4,7 +4,7 @@
 Описание на русском [здесь](./README_RUS.md) <br>
 
 Stack: `Python`, `SQL`, `Docker` <br>
-Libs and frameworks: `Django`, `DjangoORM` <br>
+Libs and frameworks: `Django`, `DjangoORM`, `asyncio`, `aiohttp` <br>
 
 
 ## Architecture
